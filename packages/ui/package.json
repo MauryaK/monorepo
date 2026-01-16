@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./globals.css": "./src/globals.css",
     "./*": "./src/*.tsx"
   },
   "scripts": {
@@ -11,16 +12,25 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
+    "tsup": "^8.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "autoprefixer": "^10.4.17",
     "eslint": "^9.39.1",
-    "typescript": "5.9.2"
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.9.2",
+    "@repo/tailwind-config": "workspace:*"
   },
   "dependencies": {
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "shadcn": "^3.6.3"
   }
 }
