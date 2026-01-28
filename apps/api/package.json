@@ -2,6 +2,7 @@
     "name": "api",
     "version": "0.0.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "tsx watch src/index.ts",
         "build": "tsup src/index.ts --format cjs,esm --dts",
@@ -11,6 +12,8 @@
         "test": "jest"
     },
     "dependencies": {
+        "@repo/database": "workspace:*",
+        "@t3-oss/env-core": "^0.13.10",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
@@ -18,9 +21,11 @@
         "express-validator": "^7.0.1",
         "helmet": "^7.1.0",
         "jsonwebtoken": "^9.0.2",
-        "morgan": "^1.10.0"
+        "morgan": "^1.10.0",
+        "zod": "^4.3.5"
     },
     "devDependencies": {
+        "@erp/shared-types": "workspace:*",
         "@repo/eslint-config": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@types/bcryptjs": "^2.4.6",

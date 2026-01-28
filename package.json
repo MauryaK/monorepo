@@ -13,10 +13,12 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@types/node": "^22.15.3",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
     "tailwindcss": "^4.1.18",
+    "tsup": "^8.5.1",
     "turbo": "^2.7.4",
     "typescript": "5.9.2"
   },
