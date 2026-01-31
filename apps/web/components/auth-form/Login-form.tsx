@@ -22,7 +22,7 @@ export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useRouter();
     const dispatch = useAppDispatch();
-    const { isAuthenticated } = useAppSelector((state) => state.auth);
+    const { isAuthenticated, isLoading: isAuthLoading } = useAppSelector((state) => state.auth);
 
     const [login] = useLoginMutation();
 
@@ -32,10 +32,6 @@ export default function LoginForm() {
             navigate.push('/home');
         }
     }, [isAuthenticated, navigate]);
-
-
-
-
 
     const form = useForm<z.infer<typeof loginUserSchema>>({
         resolver: zodResolver(loginUserSchema),
@@ -51,11 +47,12 @@ export default function LoginForm() {
                 email: formData.email,
                 password: formData.password,
             }).unwrap();
+            console.log('Login result:', result);
             if (result.SuccessStatus && result.user && result.token) {
                 dispatch(setAuth({ user: result.user, token: result.token }));
                 navigate.push('/home');
                 toast.success(result.CustomMessage, {
-                    closeButton: true,
+                    closeButton: true, 
                     action: {
                         label: 'Success',
                         onClick: () => console.log('Successful login')
@@ -71,9 +68,9 @@ export default function LoginForm() {
                 });
 
             }
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : 'Login failed';
-            toast.error(errorMessage, {
+        } catch (error: any) {
+            const message = (error as { data?: { CustomMessage?: string } }).data?.CustomMessage;
+            toast.error(message, {
                 closeButton: true,
                 action: {
                     label: 'Try Again',
@@ -144,6 +141,13 @@ export default function LoginForm() {
                         </Button>
                     </Field>
                 </CardFooter>
+                {
+                    isAuthLoading && (
+                        <div className="mt-4 p-2 text-center text-sm text-gray-500">
+                            <Spinner data-icon="inline-start" /> Checking authentication...
+                        </div>
+                    )
+                }
             </form>
         </>
     );

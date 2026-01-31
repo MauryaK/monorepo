@@ -91,6 +91,13 @@ export class UserService {
                     ActualError: 'Invalid email or password',
                 };
             };
+            if (!user.isactive) {
+                return {
+                    SuccessStatus: false,
+                    CustomMessage: 'User account is inactive',
+                    ActualError: 'User account is inactive',
+                };
+            }
 
             // Generate token
             const token = generateToken({ userId: user.id, email: user.email });

@@ -19,7 +19,7 @@ export default function HomePage() {
         if (!isLoading && !isAuthenticated) {
             navigate.push('/');
         }
-    }, [isAuthenticated, isLoading, navigate]);
+    }, [isLoading, isAuthenticated, navigate]);
 
     if (!isAuthenticated) {
         return null;
